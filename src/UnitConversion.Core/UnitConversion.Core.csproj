@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Pure domain/application layer: no framework or infrastructure dependencies. -->
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="UnitConversion.UnitTests" />
+  </ItemGroup>
+
+</Project>

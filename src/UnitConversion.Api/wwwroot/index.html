@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Convert values between units of length, mass, temperature and more.">
+  <title>Unit Converter</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563eb'/%3E%3Cpath d='M9 12h14l-4-4M23 20H9l4 4' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8"></rect>
+          <path d="M9 12h14l-4-4M23 20H9l4 4"></path>
+        </svg>
+        <span>Unit Converter</span>
+      </div>
+      <nav class="header-links">
+        <a href="scalar" target="_blank" rel="noopener">API docs</a>
+        <a href="health" target="_blank" rel="noopener">Health</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h1>Convert anything, exactly.</h1>
+      <p>Pick a category, enter a value and choose your units. Results update as you type.</p>
+    </section>
+
+    <section class="card" aria-labelledby="converter-title">
+      <h2 id="converter-title" class="visually-hidden">Converter</h2>
+
+      <div class="category-tabs" id="category-tabs" role="tablist" aria-label="Category">
+        <span class="muted">Loading categories…</span>
+      </div>
+
+      <form id="converter-form" class="converter" autocomplete="off" novalidate>
+        <div class="field">
+          <label for="value">Value</label>
+          <input id="value" name="value" type="text" inputmode="decimal" value="1" spellcheck="false">
+        </div>
+
+        <div class="field">
+          <label for="from-unit">From</label>
+          <select id="from-unit" name="from"></select>
+        </div>
+
+        <button type="button" id="swap" class="swap" aria-label="Swap units" title="Swap units">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></svg>
+        </button>
+
+        <div class="field">
+          <label for="to-unit">To</label>
+          <select id="to-unit" name="to"></select>
+        </div>
+
+        <div class="field field-small">
+          <label for="decimals">Decimals</label>
+          <select id="decimals" name="decimals"></select>
+        </div>
+      </form>
+
+      <div class="result" id="result" aria-live="polite">
+        <div class="result-main">
+          <span class="result-value" id="result-value">–</span>
+          <span class="result-unit" id="result-unit"></span>
+        </div>
+        <div class="result-sub">
+          <span id="result-formula"></span>
+          <button type="button" id="copy" class="link-button" hidden>Copy</button>
+        </div>
+      </div>
+
+      <div class="error" id="error" role="alert" hidden></div>
+    </section>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="all-title">
+        <div class="card-head">
+          <h2 id="all-title">In every unit</h2>
+          <span class="muted small" id="all-caption"></span>
+        </div>
+        <table class="table" id="all-table">
+          <thead><tr><th scope="col">Unit</th><th scope="col" class="num">Value</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="card" aria-labelledby="history-title">
+        <div class="card-head">
+          <h2 id="history-title">Recent</h2>
+          <button type="button" id="clear-history" class="link-button" hidden>Clear</button>
+        </div>
+        <ul class="history" id="history"></ul>
+        <p class="muted small" id="history-empty">Your recent conversions will appear here.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="container footer muted small">
+    Served by the Unit Conversion API · <a href="api/v1/categories" target="_blank" rel="noopener">/api/v1/categories</a>
+  </footer>
+</body>
+</html>

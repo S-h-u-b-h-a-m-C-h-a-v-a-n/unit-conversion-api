@@ -1,0 +1,42 @@
+# Sample requests. Run them from Visual Studio, Rider or VS Code (REST Client extension).
+@host = http://localhost:5080
+
+### Convert 100 °C to °F
+GET {{host}}/api/v1/conversions?value=100&from=C&to=F
+
+### Convert 10 metres to feet, rounded to 2 decimal places
+GET {{host}}/api/v1/conversions?value=10&from=m&to=ft&decimals=2
+
+### Convert 5 kilograms to pounds using unit names
+GET {{host}}/api/v1/conversions?value=5&from=kilogram&to=pounds
+
+### Batch conversion
+POST {{host}}/api/v1/conversions/batch
+Content-Type: application/json
+
+{
+  "items": [
+    { "value": 1, "from": "mi", "to": "km" },
+    { "value": 1, "from": "GiB", "to": "MB" },
+    { "value": 1, "from": "kg", "to": "m" }
+  ],
+  "decimals": 4
+}
+
+### Incompatible units (400)
+GET {{host}}/api/v1/conversions?value=1&from=kg&to=m
+
+### Below absolute zero (422)
+GET {{host}}/api/v1/conversions?value=-500&from=C&to=K
+
+### List categories
+GET {{host}}/api/v1/categories
+
+### List units of a category
+GET {{host}}/api/v1/categories/length/units
+
+### Look up a unit by alias
+GET {{host}}/api/v1/units/feet
+
+### Health check
+GET {{host}}/health
